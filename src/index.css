@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 140 20% 98%;
+    --foreground: 150 30% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 150 30% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 150 30% 10%;
+
+    --primary: 152 55% 33%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 145 20% 93%;
+    --secondary-foreground: 152 40% 20%;
+
+    --muted: 140 15% 94%;
+    --muted-foreground: 150 10% 45%;
+
+    --accent: 145 25% 90%;
+    --accent-foreground: 152 40% 20%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 145 15% 88%;
+    --input: 145 15% 88%;
+    --ring: 152 55% 33%;
+
+    --radius: 0.625rem;
+
+    --sidebar-background: 150 25% 97%;
+    --sidebar-foreground: 150 20% 25%;
+    --sidebar-primary: 152 55% 33%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 145 25% 92%;
+    --sidebar-accent-foreground: 150 30% 15%;
+    --sidebar-border: 145 15% 88%;
+    --sidebar-ring: 152 55% 33%;
+
+    /* Custom semantic tokens */
+    --success: 152 60% 40%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 38 90% 15%;
+    --danger: 0 72% 51%;
+    --danger-foreground: 0 0% 100%;
+    --info: 200 80% 50%;
+    --info-foreground: 0 0% 100%;
+
+    --hero-gradient: linear-gradient(135deg, hsl(152, 55%, 33%) 0%, hsl(160, 50%, 28%) 50%, hsl(145, 45%, 38%) 100%);
+    --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+    --card-shadow-hover: 0 4px 12px 0 rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', 'Noto Sans Devanagari', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4 {
+    @apply tracking-tight;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer utilities {
+  .text-success { color: hsl(var(--success)); }
+  .text-warning { color: hsl(var(--warning)); }
+  .text-danger { color: hsl(var(--danger)); }
+  .bg-success { background-color: hsl(var(--success)); }
+  .bg-warning { background-color: hsl(var(--warning)); }
+  .bg-danger { background-color: hsl(var(--danger)); }
+  .bg-success\/10 { background-color: hsl(var(--success) / 0.1); }
+  .bg-warning\/10 { background-color: hsl(var(--warning) / 0.1); }
+  .bg-danger\/10 { background-color: hsl(var(--danger) / 0.1); }
+
+  .hero-gradient {
+    background: var(--hero-gradient);
+  }
+
+  .card-elevated {
+    box-shadow: var(--card-shadow);
+    transition: box-shadow 0.2s ease-out;
+  }
+  .card-elevated:hover {
+    box-shadow: var(--card-shadow-hover);
+  }
+
+  /* Fade in animations */
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out both;
+  }
+
+  .animate-fade-in-delayed {
+    animation: fade-in 0.8s ease-out 0.3s both;
+  }
+
+  /* Pulse animation for interactive elements */
+  .hover\:pulse:hover {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Glow effect for buttons */
+  .hover\:glow:hover {
+    box-shadow: 0 0 20px rgba(152, 55, 33, 0.3);
+  }
+
+  /* Bounce effect */
+  .hover\:bounce:hover {
+    animation: bounce 0.6s ease-in-out;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  40%, 43% {
+    transform: translate3d(0, -8px, 0);
+  }
+  70% {
+    transform: translate3d(0, -4px, 0);
+  }
+  90% {
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+/* Scroll reveal animation */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.animate-reveal {
+  animation: reveal-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-reveal-delay-1 { animation-delay: 80ms; }
+.animate-reveal-delay-2 { animation-delay: 160ms; }
+.animate-reveal-delay-3 { animation-delay: 240ms; }
